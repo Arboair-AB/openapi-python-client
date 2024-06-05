@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Self, Union
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, model_validator
 
@@ -162,7 +162,7 @@ class Schema(BaseModel):
     )
 
     @model_validator(mode="after")
-    def handle_nullable(self) -> "Schema":
+    def handle_nullable(self) -> Self:
         """Convert the old 3.0 `nullable` property into the new 3.1 style"""
         if not self.nullable:
             return self
